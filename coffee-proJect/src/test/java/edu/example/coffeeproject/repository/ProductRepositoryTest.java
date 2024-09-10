@@ -1,4 +1,4 @@
-package edu.example.coffeeproject.entity.repository;
+package edu.example.coffeeproject.repository;
 
 import edu.example.coffeeproject.entity.Category;
 import edu.example.coffeeproject.entity.Product;
