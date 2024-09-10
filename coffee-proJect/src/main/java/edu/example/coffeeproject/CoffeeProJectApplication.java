@@ -11,6 +11,7 @@ public class CoffeeProJectApplication {
     public static void main(String[] args) {
         SpringApplication.run(CoffeeProJectApplication.class, args);
         //test
+        //test2
     }
 
 }
