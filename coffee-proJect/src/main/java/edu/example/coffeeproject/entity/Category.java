@@ -1,8 +1,9 @@
 package edu.example.coffeeproject.entity;
 
 public enum Category {
+    BRAZILL_SERRA_DO_COFFEE,
     COLUMBIA_COFFEE,
     COLUMBIA_QUINDIO,
-    BRAZILL_SERRA_DO_COFFEE,
-    ETHIOPIA_SIDAME
+    ETHIOPIA_SIDAME,
+    COFFEE_BEAN_PACKAGE
 }

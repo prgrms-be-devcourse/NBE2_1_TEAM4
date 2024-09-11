@@ -28,7 +28,7 @@ class ProductRepositoryTest {
 //    }
     @Test
     public void TestGet(){
-        Product product = Product.builder().productId(1L).productName("splite").category(Category.ETHIOPIA_SIDAME).
+        Product product = Product.builder().productId(2L).productName("splite").category(Category.ETHIOPIA_SIDAME).
                 price(1000).description("splite eat").build();
         productRepository.save(product);
         log.info(product);

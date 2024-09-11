@@ -34,7 +34,7 @@ class OrderRepositoryTest {
         Long productId = 1L;
         Optional<Product> product = productRepository.findById(productId);
         Order order = Order.builder()
-                .email("ccc@naver.com")
+                .email("ggg@naver.com")
                 .address("여수밤바다")
                 .postCode("123-321")
                 .orderStatus(OrderStatus.ACCEPTED)
@@ -45,7 +45,7 @@ class OrderRepositoryTest {
         OrderItem orderItem = OrderItem.builder()
                 .product(product.get())
                 .order(order)
-                .category(Category.COLUMBIA_COFFEE)
+                .category(Category.BRAZILL_SERRA_DO_COFFEE)
                 .price(1000)
                 .quantity(5)
                 .build();

@@ -1,15 +1,13 @@
 package edu.example.coffeeproject.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "product")
 @Table(name = "orderItems_tbl")
 @Builder
 public class OrderItem {
@@ -18,7 +16,9 @@ public class OrderItem {
     private Long orderItemId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+
     private Product product;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
     @Enumerated(EnumType.STRING)

@@ -7,6 +7,7 @@ import edu.example.coffeeproject.repository.ProductRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,5 +53,9 @@ public class ProductService {
 
     public void remove(Long productId){
         productRepository.deleteById(productId);
+    }
+
+    public List<Product> readAll(){
+        return productRepository.findAll();
     }
 }
