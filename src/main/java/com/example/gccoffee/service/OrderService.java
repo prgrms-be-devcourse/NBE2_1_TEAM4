@@ -2,6 +2,7 @@ package com.example.gccoffee.service;
 
 import com.example.gccoffee.dto.order.OrderItemResponseDTO;
 import com.example.gccoffee.dto.order.OrderResponseDTO;
+import com.example.gccoffee.dto.page.PageRequestDTO;
 import com.example.gccoffee.entity.Order;
 import com.example.gccoffee.entity.OrderItem;
 import com.example.gccoffee.entity.OrderStatus;
@@ -12,6 +13,9 @@ import com.example.gccoffee.repository.OrderRepository;
 import com.example.gccoffee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -129,16 +133,12 @@ public class OrderService {
     }
 
     //주문 리스트
-    public List<OrderResponseDTO> readAll() {
-        List<Order> orders = orderRepository.findAll();
-        List<OrderResponseDTO> orderResponseDTOs = new ArrayList<>();
+    public Page<OrderResponseDTO> readAll(PageRequestDTO pageRequestDTO) {
+        Sort sort = Sort.by("orderId").ascending();
+        Pageable pageable = pageRequestDTO.getPageable(sort);
 
-        for (Order order : orders) {
-            OrderResponseDTO orderResponseDTO = new OrderResponseDTO(order);
-            orderResponseDTOs.add(orderResponseDTO);
-        }
-
-        return orderResponseDTOs;
+        Page<Order> orders = orderRepository.findAll(pageable);
+        return orders.map(OrderResponseDTO::new);
     }
 
     //매일 14시에 주문 상태 변경
