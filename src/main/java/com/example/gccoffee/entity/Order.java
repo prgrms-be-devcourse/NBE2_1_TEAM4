@@ -59,7 +59,12 @@ public class Order {
         this.orderStatus = OrderStatus.ACCEPTED;
     }
 
-    public void updateOrderItems(List<OrderItem> orderItems) {
+    public void updateOrderItems(List<OrderItem> orderItems) { //주문 상품 등록
         this.orderItems = orderItems;
+    }
+
+    public void addOrderItems(List<OrderItem> newItems) { //주문 상품 추가
+        this.orderItems.addAll(newItems);
+        this.updatedAt = LocalDateTime.now();
     }
 }
