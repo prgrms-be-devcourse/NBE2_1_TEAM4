@@ -1,6 +1,6 @@
 package com.example.gccoffee.service;
 
-import com.example.gccoffee.dto.ProductDTO;
+import com.example.gccoffee.dto.product.ProductResponseDTO;
 import com.example.gccoffee.entity.Product;
 import com.example.gccoffee.exception.ProductException;
 import com.example.gccoffee.repository.ProductRepository;
@@ -19,11 +19,11 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     //상품 등록
-    public ProductDTO register(ProductDTO productDTO) {
+    public ProductResponseDTO register(ProductResponseDTO productResponseDTO) {
         try {
-            Product product = productDTO.toEntity();
+            Product product = productResponseDTO.toEntity();
             productRepository.save(product);
-            return new ProductDTO(product);
+            return new ProductResponseDTO(product);
         } catch (Exception e) {
             log.error("error : " + e);
             throw ProductException.NOT_REGISTERED.get();
@@ -31,21 +31,21 @@ public class ProductService {
     }
 
     //상품 조회
-    public ProductDTO read(Long id) {
+    public ProductResponseDTO read(Long id) {
         Product product = productRepository.findById(id).orElseThrow(ProductException.NOT_FOUND::get);
-        return new ProductDTO(product);
+        return new ProductResponseDTO(product);
     }
 
     //상품 수정
-    public ProductDTO modify(Long productId, ProductDTO productDTO) {
+    public ProductResponseDTO modify(Long productId, ProductResponseDTO productResponseDTO) {
         Product product = productRepository.findById(productId).orElseThrow(ProductException.NOT_FOUND::get);
 
         try {
-            product.changeProductName(productDTO.getProductName());
-            product.changeCategory(productDTO.getCategory());
-            product.changePrice(productDTO.getPrice());
-            product.changeDescription(productDTO.getDescription());
-            return new ProductDTO(product);
+            product.changeProductName(productResponseDTO.getProductName());
+            product.changeCategory(productResponseDTO.getCategory());
+            product.changePrice(productResponseDTO.getPrice());
+            product.changeDescription(productResponseDTO.getDescription());
+            return new ProductResponseDTO(product);
         } catch (Exception e) {
             log.error("error : " + e);
             throw ProductException.NOT_MODIFIED.get();
@@ -53,12 +53,12 @@ public class ProductService {
     }
 
     //상품 삭제
-    public ProductDTO remove(Long productId) {
+    public ProductResponseDTO remove(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(ProductException.NOT_FOUND::get);
 
         try {
             productRepository.delete(product);
-            return new ProductDTO(product);
+            return new ProductResponseDTO(product);
         } catch (Exception e) {
             log.error("error : " + e);
             throw ProductException.NOT_REMOVED.get();
@@ -71,3 +71,4 @@ public class ProductService {
         return products;
     }
 }
+

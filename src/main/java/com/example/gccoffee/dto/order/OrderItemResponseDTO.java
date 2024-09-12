@@ -1,10 +1,10 @@
 package com.example.gccoffee.dto.order;
 
 import com.example.gccoffee.entity.OrderItem;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 public class OrderItemResponseDTO {
     private Long productId;

@@ -2,13 +2,13 @@ package com.example.gccoffee.dto.order;
 
 import com.example.gccoffee.entity.Order;
 import com.example.gccoffee.entity.OrderStatus;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
 @NoArgsConstructor
 public class OrderResponseDTO {
     private Long orderId;

@@ -1,9 +1,9 @@
 package com.example.gccoffee.dto.order;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 public class OrderItemRequestDTO {
     private Long productId;

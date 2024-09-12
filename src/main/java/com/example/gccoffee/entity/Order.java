@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @EntityListeners(AuditingEntityListener.class)
 public class Order {
     @Id
@@ -39,7 +38,8 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private OrderStatus orderStatus;
+    @Builder.Default
+    private OrderStatus orderStatus = OrderStatus.ACCEPTED;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -56,6 +56,10 @@ public class Order {
     }
 
     public void changeOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+        this.orderStatus = OrderStatus.ACCEPTED;
+    }
+
+    public void updateOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

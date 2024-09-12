@@ -1,15 +1,15 @@
-package com.example.gccoffee.dto;
+package com.example.gccoffee.dto.product;
 
 import com.example.gccoffee.entity.Category;
 import com.example.gccoffee.entity.Product;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductResponseDTO {
     private Long productId;
 
     @NotBlank
@@ -22,7 +22,7 @@ public class ProductDTO {
 
     private String description;
 
-    public ProductDTO(Product product) {
+    public ProductResponseDTO(Product product) {
         this.productId = product.getProductId();
         this.productName = product.getProductName();
         this.category = product.getCategory();

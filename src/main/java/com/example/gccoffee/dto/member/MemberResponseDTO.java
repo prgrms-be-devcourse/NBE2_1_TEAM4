@@ -1,40 +1,29 @@
-package com.example.gccoffee.dto;
+package com.example.gccoffee.dto.member;
 
 import com.example.gccoffee.entity.Member;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberDTO {
-    @NotBlank
+public class MemberResponseDTO {
     private String mid;
-
-    @NotBlank
     private String mpw;
-
-    @NotBlank
     private String mname;
-
-    @NotBlank
     private String email;
-
-    @NotBlank
     private String role;
-
     private LocalDateTime joinDate;
     private LocalDateTime modifiedDate;
 
-    public MemberDTO(Member member) {
+    public MemberResponseDTO(Member member) {
         this.mid = member.getMid();
         this.mpw = member.getMpw();
         this.mname = member.getMname();

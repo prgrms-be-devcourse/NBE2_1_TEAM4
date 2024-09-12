@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class OrderService {
                 orderItems.add(orderItem);
             }
 
-            order.setOrderItems(orderItems);
+            order.updateOrderItems(orderItems);
 
             orderRepository.save(order);
 
@@ -128,8 +127,7 @@ public class OrderService {
 
         for (Order order : orders) {
             if (order.getOrderStatus() != OrderStatus.SETTLED && order.getOrderStatus() != OrderStatus.CANCELLED) {
-                order.setOrderStatus(changeStatus(order.getOrderStatus()));
-                order.setUpdatedAt(LocalDateTime.now());
+                order.changeOrderStatus(changeStatus(order.getOrderStatus()));
                 orderRepository.save(order);
             }
             else if (order.getOrderStatus() == OrderStatus.SETTLED || order.getOrderStatus() == OrderStatus.CANCELLED) {
@@ -153,3 +151,4 @@ public class OrderService {
         }
     }
 }
+

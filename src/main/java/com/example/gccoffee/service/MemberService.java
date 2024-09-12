@@ -1,6 +1,6 @@
 package com.example.gccoffee.service;
 
-import com.example.gccoffee.dto.MemberDTO;
+import com.example.gccoffee.dto.member.MemberResponseDTO;
 import com.example.gccoffee.entity.Member;
 import com.example.gccoffee.exception.MemberException;
 import com.example.gccoffee.repository.MemberRepository;
@@ -21,7 +21,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     //회원 조회 - 아이디와 비밀번호 이용
-    public MemberDTO read(String mid, String mpw) {
+    public MemberResponseDTO read(String mid, String mpw) {
         Optional<Member> foundMember = memberRepository.findById(mid);
         Member member = foundMember.orElseThrow(MemberException.BAD_CREDENTIALS::get);
 
@@ -29,14 +29,14 @@ public class MemberService {
             throw MemberException.BAD_CREDENTIALS.get();
         }
 
-        return new MemberDTO(member);
+        return new MemberResponseDTO(member);
     }
 
     //회원 조회 - 아이디 이용
-    public MemberDTO read(String mid) {
+    public MemberResponseDTO read(String mid) {
         Optional<Member> foundMember = memberRepository.findById(mid);
         Member member = foundMember.orElseThrow(MemberException.BAD_CREDENTIALS::get);
 
-        return new MemberDTO(member);
+        return new MemberResponseDTO(member);
     }
 }

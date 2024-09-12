@@ -1,6 +1,6 @@
 package com.example.gccoffee.controller;
 
-import com.example.gccoffee.dto.ProductDTO;
+import com.example.gccoffee.dto.product.ProductResponseDTO;
 import com.example.gccoffee.entity.Product;
 import com.example.gccoffee.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,15 +24,15 @@ public class ProductController {
     //상품 등록
     @PostMapping
     @Operation(summary = "상품 등록", description = "상품을 등록할 때 사용하는 API")
-    public ResponseEntity<ProductDTO> register(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductResponseDTO> register(@RequestBody ProductResponseDTO productResponseDTO) {
         log.info("Registering new product");
-        return ResponseEntity.ok(productService.register(productDTO));
+        return ResponseEntity.ok(productService.register(productResponseDTO));
     }
 
     //상품 조회
     @GetMapping("/{productId}")
     @Operation(summary = "상품 조회", description = "상품 1개를 조회할 때 사용하는 API")
-    public ResponseEntity<ProductDTO> read(@PathVariable Long productId) {
+    public ResponseEntity<ProductResponseDTO> read(@PathVariable Long productId) {
         log.info("Getting product by ID");
         return ResponseEntity.ok(productService.read(productId));
     }
@@ -40,9 +40,9 @@ public class ProductController {
     //상품 수정
     @PutMapping("/{productId}")
     @Operation(summary = "상품 수정", description = "상품 1개를 수정할 때 사용하는 API")
-    public ResponseEntity<ProductDTO> modify(@PathVariable Long productId, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductResponseDTO> modify(@PathVariable Long productId, @RequestBody ProductResponseDTO productResponseDTO) {
         log.info("Updating product by ID");
-        return ResponseEntity.ok(productService.modify(productId, productDTO));
+        return ResponseEntity.ok(productService.modify(productId, productResponseDTO));
     }
 
     //상품 삭제
